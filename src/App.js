@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import Chart from './components/Chart'
 import pattern from 'patternomaly'
+
+
+
 
 export class App extends Component {
   constructor(props){
@@ -19,16 +22,32 @@ export class App extends Component {
   getChartData(){
     this.setState({
       chartData:{
-				labels:['Boston', 'Worcester', 'Providence', 'Springfield', 'Bridgeport', 'New Haven'],
+				labels:['A', 'B', 'C', 'D', 'E', 'F', 'G'],
 				datasets: [{
-					label:'Population',
+          label: 'Line Dataset',
+          data: [800, 900, 1100, 600, 800, 1000, 930],
+          backgroundColor:'rgba(0, 0, 0, 0)',
+          borderColor: 'red',
+          // Changes this dataset to become a line
+          type: 'line',
+          // pointStyle:void ctx.drawImage(logo, 1, 1,1,1),
+          pointStyle:'line',
+          pointRadius:85,
+          pointHoverRadius:72,
+          borderWidth:4,
+          hoverBorderWidth:3,
+          showLine:false
+        },{
+          type: 'bar',
+					label:'Bar Dataset',
 					data:[
-						617594,
-						184045,
-						178042,
-						153060,
-						144229,
-						129779
+						1000,
+						950,
+						800,
+						900,
+						980,
+            1050,
+            1200
 					],
 					backgroundColor:[
 						'rgba(255, 99, 132, 0.6)',
@@ -36,17 +55,20 @@ export class App extends Component {
 						'rgba(255, 206, 86, 0.6)',
 						'rgba(75, 192, 192, 0.6)',
             'rgba(153, 102, 255, 0.6)',
-            pattern.draw('diagonal', 'rgba(255, 159, 64, 0.6)')
+            pattern.draw('diagonal', 'rgba(255, 159, 64, 0.6)'),
+            pattern.draw('ring', 'rgba(23, 333, 64, 0.6)')
 					]
-				}]				
+        }],
+        customOptions:[{lineGraphHorizontal:true}]
+        
 			}
     })
   }
 
   render(){
     return (
-      <div className="App" style={{padding: 5 + 'em'}}>
-        <Chart chartData={this.state.chartData} location = 'New England'/>
+      <div className="App" style={{padding: 10 + 'em'}}>
+        <Chart chartData={this.state.chartData} title = 'Random Data'/>
       </div>
     );
   }
