@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-
 import './App.css';
 import Chart from './components/Chart'
+import ChartDataForm from './components/ChartDataForm'
+import Header from './containers/Header'
+import Content from './containers/Content'
+import Footer from './containers/Footer'
 import pattern from 'patternomaly'
 
 
@@ -67,8 +70,14 @@ export class App extends Component {
 
   render(){
     return (
-      <div className="App" style={{padding: 10 + 'em'}}>
-        <Chart chartData={this.state.chartData} title = 'Random Data'/>
+      <div className="App">
+        <Header />
+        <Content>
+          <ChartDataForm />
+          <Chart chartData={this.state.chartData} location = 'New England'/>
+        </Content>
+        <Footer />
+				{/* <Chart /> */}
       </div>
     );
   }
